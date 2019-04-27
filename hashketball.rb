@@ -168,17 +168,18 @@ def team_names()
   teamnames
 end
 
-def player_stats(name)
-  playerstats = {}
+def player_numbers(name)
+  jerseyNumbers = []
   game_hash.each do |location, team_data|
-    team_data.each do |attribute, data|
-      if attribute == :players
-        data.each do |player|
-          if player[:player_name] == name
-            playerstats == player
+    if team_data[:team_name] == name
+      team_data.each do |attribute, data|
+        if attribute == :players
+          data.each do |player|
+            jerseyNumbers << player[:number]
           end
         end
       end
     end
   end
+  jerseyNumbers
 end
